@@ -1,6 +1,6 @@
 <?php
 	
-	namespace com\project;
+	
 
 	class APIKey {
 

@@ -1,6 +1,5 @@
 <?php
 	
-	namespace com\project;
 
 	class DB {
 
@@ -12,7 +11,7 @@
 		
 		private $db;
 		private function __construct(){
-			$this->db = new \SQLite3('mydb.sqlite');
+			$this->db = new SQLite3('mydb.sqlite');
 		}
 		public function query($sql){
 			return $this->db->query($sql);

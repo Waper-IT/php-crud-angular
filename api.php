@@ -1,5 +1,7 @@
 <?php
 	
+	require('com/project/MyAPI.class.php');
+
 	error_reporting( E_ALL - E_NOTICE );
 
 	spl_autoload_extensions('.class.php,.interface.php'); // comma-separated list
@@ -12,10 +14,11 @@
 
 	header('content-type: application/json');	
 	try {
-	    $API = new \com\project\MyAPI($_REQUEST['request'], $_SERVER['HTTP_ORIGIN']);
+	    $API = new MyAPI($_REQUEST['request'], $_SERVER['HTTP_ORIGIN']);
 	    echo $API->processAPI();
 	} catch (Exception $e) {
-	    echo json_encode( ['error' => $e->getMessage()] );
+		$response['error'] = $e->getMessage();
+	    echo json_encode( $response );
 	}
 	
 ?>

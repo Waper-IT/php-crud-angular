@@ -1,6 +1,6 @@
 <?php
     
-    namespace com\rest;
+    
 
     abstract class API
     {

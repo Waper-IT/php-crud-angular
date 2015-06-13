@@ -1,6 +1,6 @@
 <?php
 	
-	namespace com\project;
+	require('com/project/DB.class.php');
 
 	class User {
 
