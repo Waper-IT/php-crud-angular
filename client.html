@@ -1,0 +1,49 @@
+<!doctype html>
+<html ng-app="TheApp">
+  <head>
+    <link rel="stylesheet" href="css/app.css">
+  </head>
+  <body ng-controller="MainCtrl as Main">
+    <div class="no-angular" ng-class="{'angular': Main.init}">
+      <h1>Super Listado de usuarios</h1>
+      <ul ng-class="{'disabled': Main.loading}">
+      	<li ng-repeat="row in Main.rows">
+          <span>{{ row.name }}</span>
+          <button ng-click="Main.edit(row)" ng-disabled="Main.loading">editar</button>
+          <button ng-click="Main.delete(row)" ng-disabled="Main.loading">eliminar</button>
+        </li>
+      </ul>
+      
+      <div ng-if="Main.editing">
+        <h1>{{ Main.editing.id ? 'Editar' : 'Agregar' }}</h1>
+        <div>Nombre: <input ng-model="Main.editing.name"></div>
+        <div>Email: <input ng-model="Main.editing.email"></div>
+        <button ng-click="Main.save(Main.editing)">guardar</button>
+      </div>
+
+      <div ng-class="{ 'typing-indicator': Main.loading }">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+
+      <button ng-if="!Main.editing" ng-click="Main.edit()" ng-disabled="Main.loading">agregar usuario</button>
+      
+      <hr>
+      
+      <div>
+
+        <button ng-if="!Main.editing" ng-click="Main.recreate()" ng-disabled="Main.loading">recrear base</button>
+        <button ng-if="!Main.editing" ng-click="Main.getAll()" ng-disabled="Main.loading">buscar todos</button>
+      </div>
+      
+      <div ng-if="Main.error">{{ Main.error }}</div>
+
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.2/angular.min.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/controllers/main.js"></script>
+    <script src="js/services/user.js"></script>
+  </body>
+</html>
