@@ -33,7 +33,7 @@
          */
          protected $file = Null;
 
-         protected $debug = [];
+         protected $debug = array();
 
         /**
          * Constructor: __construct

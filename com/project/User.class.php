@@ -6,7 +6,7 @@
 
 		public static function getAll(){
 			$res=DB::getInstance()->query('SELECT * FROM users');
-			$all=[];
+			$all=array();
 			while($row=$res->fetchArray(SQLITE3_ASSOC)){
 				$all[]=$row;
 			}
