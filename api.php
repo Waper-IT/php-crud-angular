@@ -15,7 +15,8 @@
 	    $API = new \com\project\MyAPI($_REQUEST['request'], $_SERVER['HTTP_ORIGIN']);
 	    echo $API->processAPI();
 	} catch (Exception $e) {
-	    echo json_encode( ['error' => $e->getMessage()] );
+		$response['error'] = $e->getMessage();
+	    echo json_encode( $response );
 	}
 	
 ?>
