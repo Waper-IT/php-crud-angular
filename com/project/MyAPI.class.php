@@ -18,15 +18,33 @@
 	        $apiToken = $headers['apiToken']; // could be $this->request['apiKey']
 	        if($headers['wait']) sleep($headers['wait']); //testing
 
-	        if (!$apiKey) {
-	            throw new \Exception('No API Key provided');
-	        } else if (!$APIKey->verifyKey($apiKey, $origin)) {
-	            throw new \Exception('Invalid API Key');
-	        } else if ($apiToken && !$User->getToken($apiToken)) {
-	            throw new \Exception('Invalid User Token');
+	        if( $this->endpoint !== 'session' && $this->endpoint !== 'login' ){
+	        	$headers = getallheaders(); //apache server
+		        $apiKey = $headers['apiKey']; // could be $this->request['apiKey']
+		        $apiToken = $headers['apiToken']; // could be $this->request['apiKey']
+		        if($headers['wait']) sleep($headers['wait']); //testing
+
+		        if (!$apiKey) {
+		            throw new Exception('No API Key provided');
+		        } else if (!$APIKey->verifyKey($apiKey, $origin)) {
+		            throw new Exception('Invalid API Key');
+		        } else if ($apiToken && !$User->getToken($apiToken)) {
+		            throw new Exception('Invalid User Token');
+		        }
 	        }
 
 	        $this->User = $User;
+	    }
+
+	    protected function session(){
+	    	$response = array();
+	    	$response['apiKey'] = 'my-super-key';
+	    	return $response;
+	    }
+	    protected function login(){
+	    	$response = array();
+	    	$response['apiToken'] = 'my-super-token';
+	    	return $response;
 	    }
 
 	    //creo un endpoint 'user'
