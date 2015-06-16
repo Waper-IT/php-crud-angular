@@ -42,6 +42,7 @@
         public function __construct($request) {
             header("Access-Control-Allow-Origin: *");
             header("Access-Control-Allow-Methods: *");
+            header("Access-Control-Allow-Headers: apiToken, apiKey");
             header("Content-Type: application/json");
 
             $this->args = explode('/', rtrim($request, '/'));
