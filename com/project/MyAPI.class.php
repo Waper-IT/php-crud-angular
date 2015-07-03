@@ -25,11 +25,11 @@
 		        if($headers['wait']) sleep($headers['wait']); //testing
 
 		        if (!$apiKey) {
-		            throw new Exception('No API Key provided');
+		            throw new \Exception('No API Key provided');
 		        } else if (!$APIKey->verifyKey($apiKey, $origin)) {
-		            throw new Exception('Invalid API Key');
+		            throw new \Exception('Invalid API Key');
 		        } else if ($apiToken && !$User->getToken($apiToken)) {
-		            throw new Exception('Invalid User Token');
+		            throw new \Exception('Invalid User Token');
 		        }
 	        }
 
